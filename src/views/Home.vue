@@ -4,13 +4,14 @@
     <div class="header flex">
       <div class="left flex flex-column">
         <h1>Invoices</h1>
-        <span>There are {{ invoiceData.length }} total invoices</span>
+        <!-- <span>There are {{ invoiceData.length }} total invoices</span> -->
       </div>
       <div class="right flex">
         <div @click="toggleFilterMenu" class="filter flex">
-          <span
-            >Filter by status <span v-if="filteredInvoice">: {{ filteredInvoice }}</span></span
-          >
+          <!-- <span
+            >Filter by status
+            <span v-if="filteredInvoice">: {{ filteredInvoice }}</span></span
+          > -->
           <img src="@/assets/icon-arrow-down.svg" alt="" />
           <ul v-show="filterMenu" class="filter-menu">
             <li @click="filteredInvoices">Draft</li>
@@ -28,22 +29,38 @@
       </div>
     </div>
     <!-- Invoices -->
-    <div v-if="invoiceData.length > 0">
-      <Invoice v-for="(invoice, index) in filteredData" :invoice="invoice" :key="index" />
+    <!-- <div v-if="invoiceData.length > 0">
+      <Invoice
+        v-for="(invoice, index) in filteredData"
+        :invoice="invoice"
+        :key="index"
+      />
     </div>
     <div v-else class="empty flex flex-column">
       <img src="@/assets/illustration-empty.svg" alt="" />
       <h3>There is nothing here</h3>
-      <p>Create a new invoice by clicking the New Invoice button and get started</p>
-    </div>
+      <p>
+        Create a new invoice by clicking the New Invoice button and get started
+      </p>
+    </div> -->
   </div>
 </template>
-
 
 <script>
 export default {
   name: "Home",
   components: {},
+  data() {
+    return {
+      filterMenu: null,
+    };
+  },
+  methods: {
+    newInvoice() {},
+    toggleFilterMenu() {
+      this.filterMenu = !this.filterMenu;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -80,7 +97,8 @@ export default {
           top: 25px;
           list-style: none;
           background-color: #1e2139;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
           li {
             cursor: pointer;
             font-size: 12px;

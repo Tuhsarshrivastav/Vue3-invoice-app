@@ -3,10 +3,11 @@
     <div v-if="!mobile" class="app flex flex-column">
       <Navigation />
       <div class="app flex flex-column">
+        <InvoiceModal />
         <router-view />
       </div>
     </div>
-     <div v-else class="mobile-message flex flex-column">
+    <div v-else class="mobile-message flex flex-column">
       <h2>Sorry, this app is not supported on Mobile Devices</h2>
       <p>To use this app, please use a computer or Tablet</p>
     </div>
@@ -14,6 +15,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import InvoiceModal from "./components/InvoiceModal.vue";
 import Navigation from "./components/Navigation.vue";
 export default {
   data() {
@@ -23,6 +26,7 @@ export default {
   },
   components: {
     Navigation,
+    InvoiceModal,
   },
   created() {
     this.checkScreen();
@@ -37,6 +41,9 @@ export default {
       }
       this.mobile = false;
     },
+  },
+  computed: {
+    ...mapState(["invoiceModal"]),
   },
 };
 </script>
